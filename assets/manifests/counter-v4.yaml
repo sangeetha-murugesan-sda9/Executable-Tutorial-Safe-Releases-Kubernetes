@@ -1,0 +1,54 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: counter
+  annotations:
+    kubernetes.io/change-cause: "v4 - hits per minute"
+spec:
+  replicas: 3
+  revisionHistoryLimit: 10
+  minReadySeconds: 5
+  progressDeadlineSeconds: 60
+  selector:
+    matchLabels:
+      app: counter
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25%
+  template:
+    metadata:
+      labels:
+        app: counter
+        version: v2
+    spec:
+      terminationGracePeriodSeconds: 20
+      containers:
+        - name: counter
+          image: counter:v2
+          imagePullPolicy: Never  # built locally, see background.sh
+          ports:
+            - name: http
+              containerPort: 8080
+          env:
+            - name: REDIS_HOST
+              value: redis
+          readinessProbe:
+            httpGet:
+              path: /healthz
+              port: http
+            periodSeconds: 2
+            timeoutSeconds: 1
+            failureThreshold: 2
+          lifecycle:
+            preStop:
+              # keep serving while the pod is removed from the endpoints
+              exec:
+                command: ["sleep", "5"]
+          resources:
+            requests:
+              cpu: 50m
+              memory: 64Mi
+            limits:
+              memory: 160Mi
