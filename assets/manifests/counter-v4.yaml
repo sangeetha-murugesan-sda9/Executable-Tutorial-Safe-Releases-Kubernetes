@@ -21,12 +21,12 @@ spec:
     metadata:
       labels:
         app: counter
-        version: v2
+        version: v4
     spec:
       terminationGracePeriodSeconds: 20
       containers:
         - name: counter
-          image: counter:v2
+          image: counter:v4
           imagePullPolicy: Never  # built locally, see background.sh
           ports:
             - name: http
