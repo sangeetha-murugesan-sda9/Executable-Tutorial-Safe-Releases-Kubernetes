@@ -27,7 +27,7 @@ spec:
       containers:
         - name: counter
           image: counter:v4
-          imagePullPolicy: Never  # built locally, see background.sh
+          imagePullPolicy: Never  # built locally
           ports:
             - name: http
               containerPort: 8080

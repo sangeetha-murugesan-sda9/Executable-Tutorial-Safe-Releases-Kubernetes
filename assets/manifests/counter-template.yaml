@@ -3,9 +3,9 @@ kind: Deployment
 metadata:
   name: counter
   annotations:
-    kubernetes.io/change-cause: "v2"
+    kubernetes.io/change-cause: "${VERSION} (${STRATEGY})"
 spec:
-  replicas: 3
+  replicas: ${REPLICAS}
   revisionHistoryLimit: 10
   minReadySeconds: 5
   progressDeadlineSeconds: 60
@@ -15,25 +15,25 @@ spec:
   strategy:
     type: RollingUpdate
     rollingUpdate:
-      maxSurge: 25%
-      maxUnavailable: 25%
+      maxSurge: ${MAX_SURGE}
+      maxUnavailable: ${MAX_UNAVAILABLE}
   template:
     metadata:
       labels:
         app: counter
-        version: v2
+        version: ${VERSION}
     spec:
       terminationGracePeriodSeconds: 20
       containers:
         - name: counter
-          image: counter:v2
+          image: counter:${VERSION}
           imagePullPolicy: Never  # built locally
           ports:
             - name: http
               containerPort: 8080
           env:
             - name: REDIS_HOST
-              value: redis
+              value: ${REDIS_HOST}
           readinessProbe:
             httpGet:
               path: /healthz
