@@ -1,0 +1,69 @@
+{
+  "title": "Safe Releases with Progressive Delivery",
+  "description": "Explore Kubernetes health checks, rolling updates, automatic rollback, and rollout capacity trade-offs.",
+  "details": {
+    "intro": {
+      "text": "intro.md",
+      "foreground": "foreground.sh",
+      "background": "background.sh"
+    },
+    "steps": [
+      {
+        "title": "Inspect the healthy baseline",
+        "text": "steps/step1.md",
+        "verify": "steps/step1-verify.sh"
+      },
+      {
+        "title": "Release a healthy version",
+        "text": "steps/step2.md",
+        "verify": "steps/step2-verify.sh"
+      },
+      {
+        "title": "Watch a failed release and undo it",
+        "text": "steps/step3.md",
+        "verify": "steps/step3-verify.sh"
+      },
+      {
+        "title": "Automate rollback",
+        "text": "steps/step4.md",
+        "verify": "steps/step4-verify.sh"
+      },
+      {
+        "title": "See what readiness misses",
+        "text": "steps/step5.md",
+        "verify": "steps/step5-verify.sh"
+      },
+      {
+        "title": "Compare rollout capacity",
+        "text": "steps/step6.md",
+        "verify": "steps/step6-verify.sh"
+      }
+    ],
+    "finish": {
+      "text": "finish.md"
+    },
+    "assets": {
+      "host01": [
+        {"file": "assets/app/app.py", "target": "~/tutorial/assets/app/app.py"},
+        {"file": "assets/app/app_v4.py", "target": "~/tutorial/assets/app/app_v4.py"},
+        {"file": "assets/app/Dockerfile", "target": "~/tutorial/assets/app/Dockerfile"},
+        {"file": "assets/app/requirements.txt", "target": "~/tutorial/assets/app/requirements.txt"},
+        {"file": "assets/manifests/counter-template.yaml", "target": "~/tutorial/assets/manifests/counter-template.yaml"},
+        {"file": "assets/manifests/counter-v1.yaml", "target": "~/tutorial/assets/manifests/counter-v1.yaml"},
+        {"file": "assets/manifests/counter-v2.yaml", "target": "~/tutorial/assets/manifests/counter-v2.yaml"},
+        {"file": "assets/manifests/counter-v3.yaml", "target": "~/tutorial/assets/manifests/counter-v3.yaml"},
+        {"file": "assets/manifests/counter-v4.yaml", "target": "~/tutorial/assets/manifests/counter-v4.yaml"},
+        {"file": "assets/manifests/redis.yaml", "target": "~/tutorial/assets/manifests/redis.yaml"},
+        {"file": "assets/scripts/build-image.sh", "target": "~/tutorial/assets/scripts/build-image.sh", "chmod": "+x"},
+        {"file": "assets/scripts/capacity.sh", "target": "~/tutorial/assets/scripts/capacity.sh", "chmod": "+x"},
+        {"file": "assets/scripts/release.sh", "target": "~/tutorial/assets/scripts/release.sh", "chmod": "+x"},
+        {"file": "assets/scripts/render.sh", "target": "~/tutorial/assets/scripts/render.sh", "chmod": "+x"},
+        {"file": "assets/scripts/traffic.sh", "target": "~/tutorial/assets/scripts/traffic.sh", "chmod": "+x"},
+        {"file": "assets/scripts/load-image.sh", "target": "~/tutorial/assets/scripts/load-image.sh", "chmod": "+x"}
+      ]
+    }
+  },
+  "backend": {
+    "imageid": "kubernetes-kubeadm-1node"
+  }
+}
