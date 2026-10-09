@@ -9,7 +9,7 @@ cd ~/tutorial
 diff assets/manifests/counter-v1.yaml assets/manifests/counter-v2.yaml
 ```{{exec}}
 
-Only the image, the `version` label and the change note. Any change in the pod template creates a new ReplicaSet and starts a rollout.
+Only the image, the `version` label and the change note. The Service at the end exists only in the v1 file, because it was created once and does not change. Any change in the pod template creates a new ReplicaSet and starts a rollout.
 
 Build v2 from the same app source, load it into the Kubernetes node, then apply its manifest. We also clear the traffic log first, so we only count what happens during this release:
 
@@ -21,7 +21,7 @@ kubectl apply -f assets/manifests/counter-v2.yaml
 kubectl rollout status deployment/counter --timeout=120s
 ```{{exec}}
 
-![Rolling update](../assets/figures/rolling-update.png)
+![Rolling update](../assets/Figures/rolling-update.png)
 
 Check the app URL again. It should report `version=v2`, and `/` should continue returning HTTP 200 as the pods are replaced. The traffic script shows what the users got during the release:
 
