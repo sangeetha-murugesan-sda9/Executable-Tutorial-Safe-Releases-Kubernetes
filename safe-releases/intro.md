@@ -23,7 +23,7 @@ After this tutorial you should be able to:
 
 ## How the system looks
 
-![Lab architecture](./assets/figures/architecture.png)
+![Lab architecture](./assets/Figures/architecture.png)
 
 Everything runs on a one-node Kubernetes cluster:
 
