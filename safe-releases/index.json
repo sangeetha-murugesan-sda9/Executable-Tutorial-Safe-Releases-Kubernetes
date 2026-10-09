@@ -44,22 +44,19 @@
     },
     "assets": {
       "host01": [
-        {"file": "assets/app/app.py", "target": "~/tutorial/assets/app/app.py"},
-        {"file": "assets/app/app_v4.py", "target": "~/tutorial/assets/app/app_v4.py"},
-        {"file": "assets/app/Dockerfile", "target": "~/tutorial/assets/app/Dockerfile"},
-        {"file": "assets/app/requirements.txt", "target": "~/tutorial/assets/app/requirements.txt"},
-        {"file": "assets/manifests/counter-template.yaml", "target": "~/tutorial/assets/manifests/counter-template.yaml"},
-        {"file": "assets/manifests/counter-v1.yaml", "target": "~/tutorial/assets/manifests/counter-v1.yaml"},
-        {"file": "assets/manifests/counter-v2.yaml", "target": "~/tutorial/assets/manifests/counter-v2.yaml"},
-        {"file": "assets/manifests/counter-v3.yaml", "target": "~/tutorial/assets/manifests/counter-v3.yaml"},
-        {"file": "assets/manifests/counter-v4.yaml", "target": "~/tutorial/assets/manifests/counter-v4.yaml"},
-        {"file": "assets/manifests/redis.yaml", "target": "~/tutorial/assets/manifests/redis.yaml"},
-        {"file": "assets/scripts/build-image.sh", "target": "~/tutorial/assets/scripts/build-image.sh", "chmod": "+x"},
-        {"file": "assets/scripts/capacity.sh", "target": "~/tutorial/assets/scripts/capacity.sh", "chmod": "+x"},
-        {"file": "assets/scripts/release.sh", "target": "~/tutorial/assets/scripts/release.sh", "chmod": "+x"},
-        {"file": "assets/scripts/render.sh", "target": "~/tutorial/assets/scripts/render.sh", "chmod": "+x"},
-        {"file": "assets/scripts/traffic.sh", "target": "~/tutorial/assets/scripts/traffic.sh", "chmod": "+x"},
-        {"file": "assets/scripts/load-image.sh", "target": "~/tutorial/assets/scripts/load-image.sh", "chmod": "+x"}
+        {
+          "file": "app/*",
+          "target": "~/tutorial/assets/app"
+        },
+        {
+          "file": "manifests/*",
+          "target": "~/tutorial/assets/manifests"
+        },
+        {
+          "file": "scripts/*",
+          "target": "~/tutorial/assets/scripts",
+          "chmod": "+x"
+        }
       ]
     }
   },
