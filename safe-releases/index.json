@@ -44,19 +44,9 @@
     },
     "assets": {
       "host01": [
-        {
-          "file": "app/*",
-          "target": "~/tutorial/assets/app"
-        },
-        {
-          "file": "manifests/*",
-          "target": "~/tutorial/assets/manifests"
-        },
-        {
-          "file": "scripts/*",
-          "target": "~/tutorial/assets/scripts",
-          "chmod": "+x"
-        }
+        {"file": "app/*", "target": "~/tutorial/assets"},
+        {"file": "manifests/*", "target": "~/tutorial/assets"},
+        {"file": "scripts/*", "target": "~/tutorial/assets", "chmod": "+x"}
       ]
     }
   },
