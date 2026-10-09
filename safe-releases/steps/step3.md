@@ -50,10 +50,11 @@ kubectl get service redis-cache
 `redis` exists, `redis-cache` doesn't. After 60 seconds without progress, Kubernetes also marks the rollout as failed:
 
 ```
-sleep 30; kubectl get deployment counter -o jsonpath='{range .status.conditions[*]}{.type}={.status} ({.reason}){"\n"}{end}'
+until kubectl get deployment counter -o jsonpath='{.status.conditions[?(@.type=="Progressing")].reason}' | grep -q ProgressDeadlineExceeded; do sleep 2; done
+kubectl get deployment counter -o jsonpath='{range .status.conditions[*]}{.type}={.status} ({.reason}){"\n"}{end}'
 ```{{exec}}
 
-You should see `Progressing=False (ProgressDeadlineExceeded)`. If it still says `ReplicaSetUpdated`, wait a few seconds and run it again. Note that Kubernetes does not roll back by itself. The broken pod just stays there until someone does something.
+This waits until the 60 seconds are over, then you see `Progressing=False (ProgressDeadlineExceeded)`. Note that Kubernetes does not roll back by itself. The broken pod just stays there until someone does something.
 
 What did the users see?
 
